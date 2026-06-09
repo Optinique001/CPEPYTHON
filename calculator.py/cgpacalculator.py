@@ -7,14 +7,20 @@ def calculate_cgpa():
     
     print("=== Nigerian University CGPA Calculator ===")
     print("Grades: A=5, B=4, C=3, D=2, E=1, F=0\n")
-    no_of_courses = int(input("How many courses did you offer this semester? : "))
+
+    try:
+        no_of_courses = int(input("How many courses did you offer this semester? : "))
+        if no_of_courses <= 0:
+            print("Number of courses must be greater than zero!")
+            return
+    except ValueError:
+        print("Invalid input! Please enter a valid number for courses.")
+        return
 
     courses = []
     
-    while True:
-        course = input("Enter course code (or 'done' to calculate): ").strip()
-        if course.lower() == 'done':
-            break
+    for _ in range(no_of_courses):
+        course = input("Enter course code: ").strip().upper()
         
         try:
             units = int(input(f"Credit units for {course}: "))
@@ -31,7 +37,8 @@ def calculate_cgpa():
             print(f"  Added: {course} | {units} units | Grade {grade} ({grade_points[grade]} points)\n")
         
         except ValueError:
-            print("Invalid input! Please enter a valid number for units.\n")
+            print("Invalid input! Please enter valid numbers for units.")
+            continue
     
     if not courses:
         print("No courses entered.")
