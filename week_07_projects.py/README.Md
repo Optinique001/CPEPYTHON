@@ -64,7 +64,6 @@ A Python program that simulates the behavior of basic digital logic gates.
 - Accepts binary inputs (0 and 1)
 - Simulates real logic gate operations
 - Displays gate outputs
-- Half Adder
 - Input validation for accurate results
 - Interactive menu system
 
