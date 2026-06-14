@@ -23,6 +23,7 @@ def AND(x, y):
     else:
         return 0
 
+
 def OR(x, y):
     if x == 1 or y == 1:
         return 1
@@ -44,10 +45,29 @@ def XOR(x, y):
         return 0
 
 
+# Half Adder Function
 def half_adder(x, y):
     total = XOR(x, y)
     carry = AND(x, y)
     return total, carry
+
+
+# Step 3: Test Half Adder
+def test_half_adder():
+    test_cases = [(0, 0), (0, 1), (1, 0), (1, 1)]
+
+    # List comprehension
+    results = [(x, y, *half_adder(x, y)) for x, y in test_cases]
+
+    print("\nHALF ADDER TRUTH TABLE")
+    print("=" * 35)
+    print(f"{'X':<5}{'Y':<5}{'SUM':<8}{'CARRY':<8}")
+    print("-" * 35)
+
+    for x, y, total, carry in results:
+        print(f"{x:<5}{y:<5}{total:<8}{carry:<8}")
+
+    print("=" * 35)
 
 
 # MAIN PROGRAM
@@ -58,10 +78,11 @@ while True:
     print("3. NOT")
     print("4. XOR")
     print("5. Half Adder")
-    print("6. All Operations")
-    print("7. Exit")
+    print("6. Test Half Adder")
+    print("7. All Operations")
+    print("8. Exit")
 
-    choice = input("Enter your choice (1-7): ")
+    choice = input("Enter your choice (1-8): ")
 
     if choice == '1':
         x, y = logic_input()
@@ -94,11 +115,15 @@ while True:
     elif choice == '5':
         x, y = logic_input()
         total, carry = half_adder(x, y)
-        print(f"Half Adder ({x}, {y})")
+
+        print(f"\nHalf Adder ({x}, {y})")
         print(f"Sum   = {total}")
         print(f"Carry = {carry}")
 
     elif choice == '6':
+        test_half_adder()
+
+    elif choice == '7':
         x, y = logic_input()
 
         total, carry = half_adder(x, y)
@@ -122,11 +147,11 @@ while True:
 
         print("=" * 40)
 
-    elif choice == '7':
+    elif choice == '8':
         print("Exiting...")
         break
 
     else:
-        print("Invalid choice. Please enter a number between 1 and 7.")
+        print("Invalid choice. Please enter a number between 1 and 8.")
 
 print("Thank you for using the Logic Gate Simulator!")
